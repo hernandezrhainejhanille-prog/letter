@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Letter For You ♡</title>
 
-    
+   
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
 
     
     <link rel="stylesheet" href="./style.css" />
@@ -18,39 +18,92 @@
 
     <canvas id="heartCanvas" aria-hidden="true"></canvas>
 
-    
+  
     <noscript>
         <div class="noscript-banner">
-            <p>Please enable JavaScript to enjoy the interactive animations! All the letter content is still displayed below. ♡</p>
+            <p>JavaScript is disabled, but your love letter is fully readable below! ♡</p>
         </div>
     </noscript>
 
     <main class="page-container">
 
         
-        <section id="landingSection" class="section landing-section">
-            <div class="landing-card">
-                <div class="heart-icon-badge" aria-hidden="true">♡</div>
+        <header class="scene-header">
+            <h1 class="landing-title">for my favorite person ♡</h1>
+            <p class="landing-subtitle" id="landingSubtitle">someone has a letter for you...</p>
+        </header>
+
+     
+        <section class="envelope-section" aria-label="Love Letter Envelope">
+            <div class="envelope-wrapper">
 
                
-                <h1 class="landing-title">for my favorite person ♡</h1>
+                <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Click to open the love letter envelope">
 
-               
-                <p class="landing-subtitle">I made something for you...</p>
+                    
+                    <div class="envelope-back">
+                        <div class="envelope-lining"></div>
+                    </div>
 
-                
-                <button id="openLetterBtn" class="btn btn-primary" type="button">
-                    <span>open my letter ♡</span>
-                </button>
-            </div>
+                   
+                    <div class="envelope-letter-slip" id="envelopeLetterSlip" aria-hidden="true">
+                        <div class="slip-header">
+                            <span class="slip-stamp">♡</span>
+                            <span class="slip-line"></span>
+                        </div>
+                        <div class="slip-crease"></div>
+                    </div>
+
+                    
+                    <div class="envelope-pocket">
+                        <div class="pocket-flap pocket-left"></div>
+                        <div class="pocket-flap pocket-right"></div>
+                        <div class="pocket-flap pocket-bottom"></div>
+                    </div>
+
+                   
+                    <div class="envelope-flap" id="envelopeFlap">
+                        <div class="flap-triangle"></div>
+                    </div>
+
+                  
+                    <div class="wax-seal" id="waxSeal" title="Break the wax seal to open">
+                        <div class="seal-inner">
+                            <span class="seal-heart" aria-hidden="true">♥</span>
+                        </div>
+                    </div>
+
+              
+                    <div class="envelope-tag" id="envelopeTag" aria-hidden="true">
+                        <span>open me, baby ♡</span>
+                    </div>
+
+                </div> 
+                <p class="click-hint" id="clickHint">tap the envelope to open ♡</p>
+
+            </div> 
         </section>
 
-   
-        <section id="letterSection" class="section letter-section hidden-initially">
-            <article class="letter-card">
+      
+        <section id="letterSection" class="letter-section hidden-initially" aria-live="polite">
+            <article class="letter-stationery">
+
+
+                <span class="corner-emboss corner-tl" aria-hidden="true">♡</span>
+                <span class="corner-emboss corner-tr" aria-hidden="true">♡</span>
+                <span class="corner-emboss corner-bl" aria-hidden="true">♡</span>
+                <span class="corner-emboss corner-br" aria-hidden="true">♡</span>
+
+                <div class="paper-fold fold-top" aria-hidden="true"></div>
+                <div class="paper-fold fold-bottom" aria-hidden="true"></div>
 
                
-                <div class="letter-stamp" aria-hidden="true">♡</div>
+                <div class="letter-stamp" aria-hidden="true">
+                    <div class="stamp-inner">
+                        <span class="stamp-symbol">♡</span>
+                        <span class="stamp-postmark"></span>
+                    </div>
+                </div>
 
                
                 <header class="letter-header">
@@ -66,42 +119,43 @@
                     <span>❀</span>
                 </div>
 
-                
+                <!-- ======================================================== -->
+                <!-- START OF MY LETTER                                       -->
+                <!-- Type or paste your romantic love letter below!           -->
+                <!-- You can add as many <p> paragraphs as you'd like.         -->
+                <!-- ======================================================== -->
                 <div class="letter-body">
 
-                 
-
                     <p>
-                        Happy 2nd Monthsary Baby
+                        Happy 2nd Monthsary babyy
                     </p>
 
                     <p>
-                        I hope you appreciate this baby, I don't have much time to write but it's all I can offer for now. so I'll put effort into everything because I want you to feel the love I have for you hehe. kahit busy and wala akong masyadong time, I still want to do something for you, kahit simple lang. I just want you to know na I'm always trying, okay?
-                        ‎
-                        ‎I dont love you less by knowing you more. I love you even more each day. and honestly, ang funny lang kasi the more I get to know you, the more I find reasons to love you. pati yung mga weird and corny side mo, kasama na rin yan unfortunately hehe.
-                        ‎
+                        ‎I hope you appreciate this baby, I don't have much time to write but it's all I can offer for now. so I'll put effort into everything because I want you to feel the love I have for you hehe. kahit busy and wala akong masyadong time, I still want to do something for you, kahit simple lang. I just want you to know na I'm always trying, okay?
+                    </p>
+
+                    <p>
                         ‎I love knowing the little things about you. yung mga random kwento mo, yung mga bagay na nagpapasaya sayo, yung mga bagay na nakakainis sayo, even yung mga small habits mo na baka hindi mo napapansin. I wanna know you more, not because I expect you to be perfect, but because I genuinely like knowing you as you are.
                         ‎
-                        ‎And if ever may days na you're not feeling yourself, or you're tired, quiet, or just not in the mood, I hope you know you don't have to pretend around me. you can be your usual self, your quiet self, lahat yan gusto ko.
-                        ‎
-                        ‎I know I can't always give you everything, and sometimes all I can give is a little message, a letter, or my time whenever I can. but I hope you know that whatever I give you, I mean it. I don't want to just say I love you and leave it there. I want you to actually feel it through the little things i do.
-                        ‎
-                        ‎I want to keep learning how to love you better too. i'm still figuring out what makes you happy, what makes you feel loved, what makes you feel safe, and what little things matter to you. so if there's ever something you want from me, tell me okay?
-                        ‎
-                        ‎And thank you for letting me know you, for letting me be part of your days, and for giving me another person to annoy every single day hehe
-                        ‎
-                        ‎I don't know what every day will look like, but i know I want to keep choosing you. I want to keep making memories with you, keep laughing with you, and keep learning more about you. kahit minsan puro asaran lang tayo, I'll still take it. basta ikaw.
-                        ‎
-                        ‎So yeah, this may not be the longest or fanciest letter ever, but it's mine. and I hope you can feel how much love I put into these words. I may not always have enough time to write everything I want to say, but please know that even when I don't say it, I still love you. I always love you.
-                        ‎
-                        ‎And baby, if you ever think I'm getting tired of loving you, please remember this: I literally keep finding new reasons to love you the more I know you. Happy Monthsary again baby, I love you so so much.
-                        ‎
                     </p>
-
-                    
-
+                    <p>
+                        ‎I dont love you less by knowing you more. I love you even more each day. and honestly, ang funny lang kasi the more I get to know you, the more I find reasons to love you. pati yung mga weird and corny side mo, kasama na rin yan unfortunately hehe.
+                    </p>
+                    <p>
+                        ‎And if ever may days na you're not feeling yourself, or you're tired, quiet, or just not in the mood, I hope you know you don't have to pretend around me. you can be your usual self, your quiet self, lahat yan gusto ko.
+                       
+                    </p>
+                    <p>
+                        ‎I know I can't always give you everything, and sometimes all I can give is a little message, a letter, or my time whenever I can. but I hope you know that whatever I give you, I mean it. I don't want to just say I love you and leave it there. I want you to actually feel it through the little things i do.  ‎
+                    </p>
+                    <p>
+                        ‎I want to keep learning how to love you better too. i'm still figuring out what makes you happy, what makes you feel loved, what makes you feel safe, and what little things matter to you. so if there's ever something you want from me, tell me okay?
+                    </p>
+                    <p>
+                        And baby, if you ever think I'm getting tired of loving you, please remember this: I literally keep finding new reasons to love you the more I know you. Happy Monthsary again baby, I love you so so much.
+                    </p>
                 </div>
-
+               
                 <div class="letter-signoff">
                     <p class="signoff-with-love">with all my love,</p>
                     <p class="signoff-name">always yours ♡</p>
@@ -112,23 +166,19 @@
                     <h3 class="little-message-title">one more thing...</h3>
 
                     <div class="little-message-box">
-                     
+                        
 
                         <p>
-                            I love you so much baby. More than I probably know how to explain
-                            properly. And I'll keep trying show you, in my own little ways,
-                            every single day.
-
-
+                            thank you for letting me know you, for letting me be part of your days, and for giving me another person to annoy every single day hehe
                         </p>
 
-                       
+                        
                     </div>
                 </div>
 
                 
                 <div class="surprise-section">
-                    <button id="surpriseBtn" class="btn btn-secondary" type="button">
+                    <button id="surpriseBtn" class="btn btn-tactile" type="button">
                         <span>click me ♡</span>
                     </button>
 
@@ -136,11 +186,11 @@
                     <div id="surpriseMessage" class="surprise-card hidden-surprise" aria-live="polite">
                         <div class="surprise-icon" aria-hidden="true">✨ ♡ ✨</div>
 
-
+                       
                         <p class="surprise-text">
-                            wah bulaga HAHAHHHAHA I LOVE YOUUU
+                            thank you for being my favorite person. 
                         </p>
-                        
+                       
 
                     </div>
                 </div>
@@ -148,13 +198,13 @@
             </article>
 
             <footer class="footer">
-                <p>made with ♡ just for you</p>
+                <p>i love you shanaira kathryn bernardo miao</p>
             </footer>
         </section>
 
     </main>
 
-
+    
     <script src="./script.js"></script>
 </body>
 </html>

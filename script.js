@@ -3,7 +3,7 @@ document.body.classList.add('js-enabled');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-   
+  
     const dateElement = document.getElementById('currentDate');
     if (dateElement) {
         const today = new Date();
@@ -11,81 +11,122 @@ document.addEventListener('DOMContentLoaded', () => {
         dateElement.textContent = today.toLocaleDateString(undefined, options);
     }
 
-    const landingSection = document.getElementById('landingSection');
+    
+    const envelope = document.getElementById('envelope');
+    const waxSeal = document.getElementById('waxSeal');
+    const envelopeLetterSlip = document.getElementById('envelopeLetterSlip');
     const letterSection = document.getElementById('letterSection');
-    const openLetterBtn = document.getElementById('openLetterBtn');
+    const clickHint = document.getElementById('clickHint');
     const surpriseBtn = document.getElementById('surpriseBtn');
     const surpriseMessage = document.getElementById('surpriseMessage');
 
+    let isOpening = false;
+    let isOpen = false;
+
+ 
+    function handleOpenEnvelope(event) {
+        if (isOpening || isOpen) return;
+        isOpening = true;
+
     
-    if (openLetterBtn && landingSection && letterSection) {
-        openLetterBtn.addEventListener('click', (event) => {
-          
-            createBurstEffect(event.clientX, event.clientY, 16);
+        const sealRect = waxSeal ? waxSeal.getBoundingClientRect() : envelope.getBoundingClientRect();
+        const burstX = sealRect.left + sealRect.width / 2;
+        const burstY = sealRect.top + sealRect.height / 2;
 
+      
+        createBurstEffect(burstX, burstY, 14, ['♥', '♡', '✨', '🌸']);
+
+
+        envelope.classList.add('is-opening');
+
+        
+        setTimeout(() => {
             
-            landingSection.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            landingSection.style.opacity = '0';
-            landingSection.style.transform = 'translateY(-20px)';
+            createBurstEffect(burstX, burstY - 80, 10, ['✨', '♡', '❀']);
+        }, 450);
 
-            setTimeout(() => {
-                
-                landingSection.style.display = 'none';
+       
+        setTimeout(() => {
+            envelope.classList.remove('is-opening');
+            envelope.classList.add('is-open');
+
+            if (letterSection) {
                 letterSection.classList.remove('hidden-initially');
 
+                setTimeout(() => {
+                    letterSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 120);
+            }
 
-                const rect = letterSection.getBoundingClientRect();
-                createBurstEffect(window.innerWidth / 2, Math.max(100, rect.top + 80), 12);
+            if (clickHint) {
+                clickHint.style.display = 'none';
+            }
 
-            
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }, 500);
-        });
+            isOpen = true;
+            isOpening = false;
+        }, 900);
     }
 
    
+    if (envelope) {
+        envelope.addEventListener('click', handleOpenEnvelope);
+
+     
+        envelope.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleOpenEnvelope(e);
+            }
+        });
+    }
+
+    
     if (surpriseBtn && surpriseMessage) {
         surpriseBtn.addEventListener('click', (event) => {
-            
-            createBurstEffect(event.clientX, event.clientY, 20);
+         
+            const rect = surpriseBtn.getBoundingClientRect();
+            createBurstEffect(rect.left + rect.width / 2, rect.top + rect.height / 2, 18, ['♡', '♥', '✨', '💖']);
 
-            
+          
             surpriseMessage.classList.remove('hidden-surprise');
 
-            surpriseBtn.querySelector('span').textContent = 'always & forever ♡';
-            surpriseBtn.style.pointerEvents = 'none'; 
-            surpriseBtn.style.opacity = '0.9';
+           
+            const btnSpan = surpriseBtn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = 'always & forever ♡';
+            }
+            surpriseBtn.style.pointerEvents = 'none';
 
-         
+            
             setTimeout(() => {
                 surpriseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 150);
         });
     }
 
-    function createBurstEffect(x, y, count = 15) {
-        const symbols = ['♡', '♥', '✨', '🌸', '💖'];
+    
 
+    function createBurstEffect(x, y, count = 12, symbols = ['♡', '♥', '✨', '🌸', '💖']) {
         for (let i = 0; i < count; i++) {
             const particle = document.createElement('span');
             particle.className = 'burst-particle';
             particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
             
-            const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5);
-            const distance = 40 + Math.random() * 80;
+            const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+            const distance = 35 + Math.random() * 65;
             const dx = Math.cos(angle) * distance;
-            const dy = Math.sin(angle) * distance - 20; 
-            const rot = (Math.random() - 0.5) * 60;
-            const size = 14 + Math.random() * 12;
+            const dy = Math.sin(angle) * distance - 25;
+            const rot = (Math.random() - 0.5) * 50;
+            const size = 13 + Math.random() * 10;
 
             particle.style.left = `${x}px`;
             particle.style.top = `${y}px`;
             particle.style.fontSize = `${size}px`;
-            particle.style.color = Math.random() > 0.4 ? '#e76f8b' : '#f7a2b5';
+            particle.style.color = Math.random() > 0.4 ? '#c9354d' : '#e67389';
             particle.style.setProperty('--dx', `${dx}px`);
             particle.style.setProperty('--dy', `${dy}px`);
             particle.style.setProperty('--rot', `${rot}deg`);
@@ -95,11 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             setTimeout(() => {
                 particle.remove();
-            }, 900);
+            }, 950);
         }
     }
 
-    
+   
     const canvas = document.getElementById('heartCanvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -111,34 +152,30 @@ document.addEventListener('DOMContentLoaded', () => {
             height = canvas.height = window.innerHeight;
         });
 
-        
         const hearts = [];
-        const maxHearts = Math.min(25, Math.floor(window.innerWidth / 40)); 
+        const maxHearts = Math.min(20, Math.floor(window.innerWidth / 45)); 
 
-        class FloatingHeart {
+        class AmbientParticle {
             constructor() {
                 this.reset(true);
             }
 
             reset(init = false) {
                 this.x = Math.random() * width;
-                this.y = init ? Math.random() * height : height + 20;
-                this.size = 10 + Math.random() * 14;
-                this.speedY = 0.4 + Math.random() * 0.7; // slow gentle rise
-                this.speedX = 0;
+                this.y = init ? Math.random() * height : height + 25;
+                this.size = 8 + Math.random() * 11;
+                this.speedY = 0.25 + Math.random() * 0.45; 
                 this.sway = Math.random() * 2 * Math.PI;
-                this.swaySpeed = 0.02 + Math.random() * 0.02;
-                this.opacity = 0.2 + Math.random() * 0.35;
-               
-                this.color = Math.random() > 0.5 ? '231, 111, 139' : '247, 162, 181';
+                this.swaySpeed = 0.015 + Math.random() * 0.015;
+                this.opacity = 0.12 + Math.random() * 0.22;
+                this.color = Math.random() > 0.5 ? '216, 110, 130' : '230, 150, 165';
             }
 
             update() {
                 this.y -= this.speedY;
                 this.sway += this.swaySpeed;
-                this.x += Math.sin(this.sway) * 0.5;
+                this.x += Math.sin(this.sway) * 0.4;
 
-                
                 if (this.y < -30) {
                     this.reset(false);
                 }
@@ -161,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         for (let i = 0; i < maxHearts; i++) {
-            hearts.push(new FloatingHeart());
+            hearts.push(new AmbientParticle());
         }
 
         function animate() {
